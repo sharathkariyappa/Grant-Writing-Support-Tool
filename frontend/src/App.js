@@ -1,11 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Layout } from 'antd';
+import Navbar from './components/Navbar';
+
+const { Content } = Layout;
 
 function App() {
   return (
-    <div>
-      
-    </div>
+    <Router>
+      <Layout>
+        <Navbar />
+      </Layout>
+    </Router>
   );
 }
 
