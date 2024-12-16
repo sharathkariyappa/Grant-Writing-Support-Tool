@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link to="/grantAssistant">Grant Assistant</Link>
       </Menu.Item>
       <Menu.Item key="profile" icon={<TeamOutlined />}>
-        <Link to="/organization-profile">Organization Profile</Link>
+        <Link to="/OrganizationProfile">Organization Profile</Link>
       </Menu.Item>
     </Menu>
   );

@@ -5,6 +5,7 @@ import { Layout } from 'antd';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import GrantAssistant from './pages/GrantAssistant';
+import OrganizationProfile from './pages/OrganizatioProfile';
 
 const { Content } = Layout;
 
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/GrantAssistant" element={<GrantAssistant />} />
+            <Route path="/OrganizationProfile" element={<OrganizationProfile />} />
           </Routes>
         </Content>
       </Layout>

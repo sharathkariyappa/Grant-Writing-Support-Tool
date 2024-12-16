@@ -73,7 +73,7 @@ const Home = () => {
               <Paragraph>
                 Build detailed profiles of your organization to enhance your grant applications.
               </Paragraph>
-              <Button type="link" href="/organization-profile">
+              <Button type="link" href="/OrganizationProfile">
                 Learn More
               </Button>
             </Card>
