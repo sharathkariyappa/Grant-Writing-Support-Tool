@@ -18,7 +18,7 @@ const Home = () => {
             Grant Writing Support Tool
           </Title>
           <Space>
-            <Button type="primary" href="/">
+            <Button type="primary" href="/GrantAssistant">
               Get Started
             </Button>
           </Space>
@@ -31,7 +31,7 @@ const Home = () => {
             <Paragraph style={{ fontSize: "16px" }}>
               Streamline your grant writing process with AI-powered tools for proposal assistance, organization profiling, and more.
             </Paragraph>
-            <Button type="primary" size="large" href="/grant-assistant">
+            <Button type="primary" size="large" href="/GrantAssistant">
               Start Grant Writing Now
             </Button>
           </Col>
@@ -53,7 +53,7 @@ const Home = () => {
               <Paragraph>
                 Engage in interactive Q&A sessions to craft perfect grant proposals tailored to your needs.
               </Paragraph>
-              <Button type="link" href="/">
+              <Button type="link" href="/GrantAssistant">
                 Learn More
               </Button>
             </Card>
@@ -73,9 +73,9 @@ const Home = () => {
               <Paragraph>
                 Build detailed profiles of your organization to enhance your grant applications.
               </Paragraph>
-              {/* <Button type="link" href="/organization-profile">
+              <Button type="link" href="/organization-profile">
                 Learn More
-              </Button> */}
+              </Button>
             </Card>
           </Col>
           <Col xs={24} sm={12} md={8}>
@@ -91,11 +91,12 @@ const Home = () => {
               }
             >
               <Paragraph>
-                Access a comprehensive library of resources to simplify grant writing.
+                
+                Explore a wide range of resources designed to streamline the grant writing process. Gain access to valuable tools.
               </Paragraph>
-              {/* <Button type="link" href="/resources">
+              <Button type="link" href="/resources">
                 Learn More
-              </Button> */}
+              </Button>
             </Card>
           </Col>
         </Row>
