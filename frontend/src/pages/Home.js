@@ -94,7 +94,7 @@ const Home = () => {
                 
                 Explore a wide range of resources designed to streamline the grant writing process. Gain access to valuable tools.
               </Paragraph>
-              <Button type="link" href="/resources">
+              <Button type="link" href="/GrantwritingResources">
                 Learn More
               </Button>
             </Card>

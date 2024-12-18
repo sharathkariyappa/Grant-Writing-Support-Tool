@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import GrantAssistant from './pages/GrantAssistant';
 import OrganizationProfile from './pages/OrganizatioProfile';
+import GrantWritingResources from './pages/GrantwritingResources';
+
 
 const { Content } = Layout;
 
@@ -19,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/GrantAssistant" element={<GrantAssistant />} />
             <Route path="/OrganizationProfile" element={<OrganizationProfile />} />
+            <Route path="/GrantwritingResources" element={<GrantWritingResources />} />
           </Routes>
         </Content>
       </Layout>
