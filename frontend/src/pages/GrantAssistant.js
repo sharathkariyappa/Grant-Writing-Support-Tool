@@ -2,33 +2,32 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const GrantAssistant = () => {
-  const [grantText, setGrantText] = useState(""); // User's grant text input
-  const [aiSuggestions, setAiSuggestions] = useState(""); // AI-generated suggestions
-  const [loading, setLoading] = useState(false); // Loading state for the API request
+  const [grantText, setGrantText] = useState(""); 
+  const [aiSuggestions, setAiSuggestions] = useState(""); 
+  const [loading, setLoading] = useState(false); 
 
   const handleInputChange = (e) => {
-    setGrantText(e.target.value); // Update the grant text state when the user types
+    setGrantText(e.target.value);
   };
 
   const fetchSuggestions = async () => {
     if (!grantText.trim()) {
       alert("Please enter the grant content for suggestions.");
-      return; // If grant text is empty, don't proceed
+      return; 
     }
 
-    setLoading(true); // Set loading state when request is being made
-    setAiSuggestions(""); // Reset previous suggestions before making a new request
+    setLoading(true); 
+    setAiSuggestions(""); 
 
     try {
       const response = await axios.post("http://localhost:5000/api/suggestions", { grantText });
-      // Assuming the response contains only the suggestions in response.data.suggestions
-      const generatedText = response.data.suggestions || "No suggestions available."; // Extract only the suggestions
-      setAiSuggestions(generatedText); // Set the AI suggestions in state
+      const generatedText = response.data.suggestions || "No suggestions available."; 
+      setAiSuggestions(generatedText); 
     } catch (error) {
       console.error("Error fetching suggestions:", error);
       setAiSuggestions("Failed to fetch suggestions. Please try again.");
     } finally {
-      setLoading(false); // Reset loading state after request completes
+      setLoading(false); 
     }
   };
 
@@ -54,7 +53,7 @@ const GrantAssistant = () => {
         {aiSuggestions && (
           <div style={styles.card}>
             <h2 style={styles.cardTitle}>AI Suggestions</h2>
-            <p style={styles.paragraph}>{aiSuggestions}</p> {/* Display only AI suggestions */}
+            <p style={styles.paragraph}>{aiSuggestions}</p> 
           </div>
         )}
       </main>

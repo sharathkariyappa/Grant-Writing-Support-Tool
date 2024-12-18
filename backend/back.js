@@ -1,24 +1,24 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-require("dotenv").config(); // For API key storage
+require("dotenv").config(); 
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const HUGGINGFACE_API_URL = "https://api-inference.huggingface.co/models/gpt2"; // Change to a faster model
-const TIMEOUT = 10000; // Timeout in milliseconds
-const MAX_RETRIES = 3; // Maximum number of retries
+const HUGGINGFACE_API_URL = "https://api-inference.huggingface.co/models/gpt2"; 
+const TIMEOUT = 10000; 
+const MAX_RETRIES = 3; 
 
-// Check for required environment variables
+
 if (!process.env.HUGGINGFACE_API_KEY) {
   console.error("Hugging Face API key is missing");
-  process.exit(1); // Exit the application if the API key is missing
+  process.exit(1); 
 }
 
-// Function to fetch suggestions with retry logic
+
 const fetchSuggestions = async (grantText, retries = MAX_RETRIES) => {
   try {
     const response = await axios.post(
@@ -34,28 +34,28 @@ const fetchSuggestions = async (grantText, retries = MAX_RETRIES) => {
       }
     );
 
-    // Extract the generated text from the response
+   
     const generatedText = response.data[0]?.generated_text || "No suggestions available.";
 
-    // Strip the input text from the generated response
+    
     const inputText = `Analyze this grant content and suggest improvements:\n${grantText}`;
-    const cleanGeneratedText = generatedText.replace(inputText, "").trim(); // Remove the input text
+    const cleanGeneratedText = generatedText.replace(inputText, "").trim(); 
 
-    return cleanGeneratedText || "No suggestions available."; // Return cleaned text only
+    return cleanGeneratedText || "No suggestions available."; 
   } catch (error) {
     if (error.response) {
       if (error.response.status === 503 && retries > 0) {
-        const estimatedTime = error.response.data.estimated_time || 30; // Default to 30 seconds if not provided
+        const estimatedTime = error.response.data.estimated_time || 30; 
         console.log(`Model is currently loading. Retrying in ${Math.ceil(estimatedTime)} seconds... (${MAX_RETRIES - retries + 1}/${MAX_RETRIES})`);
-        await new Promise(resolve => setTimeout(resolve, estimatedTime * 1000)); // Wait for the estimated time before retrying
-        return fetchSuggestions(grantText, retries - 1); // Retry
+        await new Promise(resolve => setTimeout(resolve, estimatedTime * 1000)); 
+        return fetchSuggestions(grantText, retries - 1); 
       }
     }
-    throw error; // Rethrow the error if it's not a 503 or if retries are exhausted
+    throw error; 
   }
 };
 
-// Route for suggestions
+
 app.post("/api/suggestions", async (req, res) => {
   const { grantText } = req.body;
 
@@ -65,14 +65,14 @@ app.post("/api/suggestions", async (req, res) => {
 
   try {
     const generatedText = await fetchSuggestions(grantText);
-    res.json({ suggestions: generatedText }); // Send only the generated text
+    res.json({ suggestions: generatedText }); 
   } catch (error) {
     console.error("Error fetching suggestions:", error.response?.data || error.message);
     res.status(500).json({ error: "Error fetching suggestions." });
   }
 });
 
-// Start the server
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
